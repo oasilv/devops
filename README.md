@@ -11,6 +11,19 @@ Este repositorio centraliza todos los recursos, manifiestos y ejercicios de mi e
 * **/exercises**: Ejercicios prácticos de CI/CD, automatización y scripting.
 * **/docs**: Notas teóricas y diagramas de arquitectura.
 
+* devops-learning/
+├── apps/
+│   ├── osbox/
+│   │   ├── deployment.yaml
+│   │   ├── service.yaml
+│   │   └── configmap.yaml
+│   └── pacman/
+│       ├── pacman-deployment.yaml
+│       └── pacman-service.yaml
+├── kubernetes/
+│   └── cluster-wide/       # Solo cosas globales (RBAC, Namespaces, Cuotas)
+├── README.md
+
 ## 🛠️ Tecnologías en Foco
 * **Git:** Control de versiones y flujo de trabajo colaborativo.
 * **Docker:** Creación y optimización de imágenes.
