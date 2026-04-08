@@ -11,7 +11,7 @@ Este repositorio centraliza todos los recursos, manifiestos y ejercicios de mi e
 * **/exercises**: Ejercicios prácticos de CI/CD, automatización y scripting.
 * **/docs**: Notas teóricas y diagramas de arquitectura.
 
-* devops-learning/
+devops-learning/
 ├── apps/
 │   ├── osbox/
 │   │   ├── deployment.yaml
@@ -23,6 +23,7 @@ Este repositorio centraliza todos los recursos, manifiestos y ejercicios de mi e
 ├── kubernetes/
 │   └── cluster-wide/       # Solo cosas globales (RBAC, Namespaces, Cuotas)
 ├── README.md
+└── .gitignore
 
 ## 🛠️ Tecnologías en Foco
 * **Git:** Control de versiones y flujo de trabajo colaborativo.
