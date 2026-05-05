@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-test
+  name: osbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-test
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: deployment-test
+    spec:
+      containers:
+      - image: de08-la012.bbmag.bbraun.com:5000/net-tools
+        imagePullPolicy: Always
+        name: osbox
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sleep infinity
+        resources: {}
+        securityContext:
+        allowPrivilegeEscalation: false
+        runAsUser: 0
