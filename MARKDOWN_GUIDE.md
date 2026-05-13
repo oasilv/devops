@@ -24,7 +24,11 @@ Para bloques grandes, usa tres comillas invertidas y el nombre del lenguaje para
 ### SQL
 ```sql
 SELECT * FROM proyectos WHERE tecnologia = 'Kubernetes';
-Bash / ShellBashpodman ps -a
+```
+
+### BASH
+```bash
+ShellBashpodman ps -a
 ```
 
 ---
