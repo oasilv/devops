@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: osbox
-          image: jrecord/nettools
+          image: quay.io/oasilv/nettools
           command:
             - /bin/sh
             - '-c'
