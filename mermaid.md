@@ -12,6 +12,8 @@ Para que cualquier plataforma (GitHub, GitLab, VS Code, Azure DevOps) renderice 
 [Sintaxis del gráfico]
 ```
 
+> *para añadir comentarios en mermaid usa el simbolo `%%`*
+
 ---
 
 ## 1. 🔀 Diagramas de Flujo (Flowchart)
@@ -122,7 +124,7 @@ gantt
 
 ---
 
-## 🎨 Personalización de Estilos Básicos
+## 6. 🎨 Personalización de Estilos Básicos
 
 Puedes modificar colores y bordes de nodos específicos usando la propiedad `style`:
 
@@ -133,7 +135,9 @@ graph LR
     style B fill:#f96,stroke:#333,stroke-width:2px
 ```
 
-## 6. 🏗️ Subgráficos y Arquitecturas Complejas (Sub-Flowcharts)
+---
+
+## 7. 🏗️ Subgráficos y Arquitecturas Complejas (Sub-Flowcharts)
 
 Los subgráficos (`subgraph`) permiten agrupar nodos en cajas lógicas. Son fundamentales para representar capas de red, aislamiento de componentes o topologías físicas vs. virtuales (como un clúster *Virtual Tenant* sobre *Bare Metal*).
 
