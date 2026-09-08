@@ -132,3 +132,76 @@ graph LR
 
     style B fill:#f96,stroke:#333,stroke-width:2px
 ```
+
+## 6. 🏗️ Subgráficos y Arquitecturas Complejas (Sub-Flowcharts)
+
+Los subgráficos (`subgraph`) permiten agrupar nodos en cajas lógicas. Son fundamentales para representar capas de red, aislamiento de componentes o topologías físicas vs. virtuales (como un clúster *Virtual Tenant* sobre *Bare Metal*).
+
+### 📌 Sintaxis Básica
+
+Para definir un subgráfico usa la palabra clave `subgraph` seguida de un identificador y su título entre comillas. Cierra siempre la estructura con `end`.
+
+```mermaid
+flowchart TB
+    subgraph BM [" Layer 1: Bare Metal Infrastructure "]
+        direction LR
+        BM_Node1[Physical Worker 1]
+        BM_Node2[Physical Worker 2]
+    end
+
+    subgraph Tenant [" Layer 2: Virtualized OpenShift Cluster "]
+        direction LR
+        MasterVM[Master VM]
+        WorkerVM[Worker VM]
+    end
+
+    BM_Node1 -->|Hypervisor / KubeVirt| MasterVM
+    BM_Node2 -->|Hypervisor / KubeVirt| WorkerVM
+```
+
+---
+
+### 📝 Ejemplo Avanzado: Topología Dedicada (Physical vs Tenant)
+
+Representación de almacenamiento en passthrough directo desde discos locales físicos hacia nodos virtuales de almacenamiento ODF:
+
+```mermaid
+flowchart TB
+    subgraph HostLayer [" 🖥️ Physical Bare Metal Layer "]
+        direction LR
+        subgraph Node1 ["Physical Node 01"]
+            LSO1[Local Storage Operator]
+            Disk1[(NVMe / Local Disk)]
+        end
+        subgraph Node2 ["Physical Node 02"]
+            LSO2[Local Storage Operator]
+            Disk2[(NVMe / Local Disk)]
+        end
+    end
+
+    subgraph VirtualLayer [" ☁️ Tenant Cluster (12-VM Topology) "]
+        direction LR
+        subgraph StorageVMs ["Storage Role"]
+            OCS_VM1[Storage VM 1]
+            OCS_VM2[Storage VM 2]
+        end
+        subgraph WorkerVMs ["Worker Role"]
+            App_VM1[Worker VM 1]
+            App_VM2[Worker VM 2]
+        end
+    end
+
+    %% Passthrough connections
+    Disk1 ==>|Direct Passthrough| OCS_VM1
+    Disk2 ==>|Direct Passthrough| OCS_VM2
+
+    %% Ceph replication
+    OCS_VM1 <===>|Native Ceph 3x Replication| OCS_VM2
+```
+
+---
+
+### 💡 Reglas para Subgráficos
+* **Identificadores Únicos:** Cada `subgraph` debe tener un ID interno (ej. `subgraph HostLayer`) y opcionalmente un título visible entre corchetes o comillas.
+* **Direccionamiento Interno:** Puedes definir la orientación de un subgráfico específico mediante `direction LR` o `direction TB` sin afectar la dirección global del flujo principal.
+* **Conexiones Inter-Subgráficos:** Puedes trazar líneas entre nodos individuales dentro de subgráficos distintos, o conectar directamente el borde de un `subgraph` con otro.
